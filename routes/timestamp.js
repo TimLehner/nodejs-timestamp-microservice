@@ -12,8 +12,8 @@ router.get('/:query', function(req, res, next) {
         var date = new Date(unixtime * 1000);
         prettyDate = dateFormat(date, "mmmm d, yyyy");
     } else {
-        prettyDate = query;
-        unixtime = Date.parse(prettyDate) / 1000;
+        unixtime = Date.parse(query) / 1000;
+        prettyDate = (unixtime) ? query : null;
     }
     res.end(JSON.stringify({unix: unixtime, natural: prettyDate}));
 });
